@@ -31,7 +31,10 @@ void setup() {
 
 void loop() {
   sendHttpRequest();
+  Serial.println("Sleep");
+  ESP.deepSleep(5000000,WAKE_RF_DEFAULT);
   delay(100);
+  Serial.println("BAD");
 }
 
 String createHashPass() {
@@ -64,6 +67,7 @@ void sendHttpRequest() {
   post += mSensor.getPercent();
   post += "&hashpass=";
   post += createHashPass();
+  Serial.println(mSensor.getPercent());
   Serial.println(httpPost(url, post));
 }
 

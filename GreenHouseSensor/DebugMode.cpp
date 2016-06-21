@@ -4,6 +4,10 @@ int DebugMode::_zone = -1;
 MoistureSensor * DebugMode::_sensor = NULL;
 
 void DebugMode::startDebug(int zone, int id, int buttonPin, MoistureSensor *sensor) {
+  pinMode(buttonPin, INPUT);
+  if (digitalRead(buttonPin) == 1) {
+    return;
+  }
   _sensor = sensor;
   _zone = zone;
   _id = id;
@@ -16,12 +20,10 @@ void DebugMode::startDebug(int zone, int id, int buttonPin, MoistureSensor *sens
   pinMode(BLUE, OUTPUT);
   
   pinMode(buttonPin, INPUT);
-  if (digitalRead(buttonPin) == 0) {
-    flash(RED, 500);
-    while(true) {
-      delay(100);
-      button.tick();
-    }
+  flash(RED, 500);
+  while(true) {
+    delay(100);
+    button.tick();
   }
 }
 
