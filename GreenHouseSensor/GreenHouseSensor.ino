@@ -32,7 +32,8 @@ void setup() {
 void loop() {
   sendHttpRequest();
   Serial.println("Sleep");
-  ESP.deepSleep(5000000,WAKE_RF_DEFAULT);
+  long seconds = 2
+  ESP.deepSleep((1000000 * seconds),WAKE_RF_DEFAULT);
   delay(100);
   Serial.println("BAD");
 }
